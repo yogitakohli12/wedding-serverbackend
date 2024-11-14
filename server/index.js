@@ -4,21 +4,15 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
-app.use(cors());
+// app.use(cors());
 app.use(bodyParser.json());
 
-// app.use(cors({ origin: 'https://instantlegalweddings.com' }));
 
 const allowedOrigins = [
-    'https://instantlegalweddings.com'
+    'https://instantlegalweddings.com',
+     'http://localhost:3000'
   ];
 
-// Set up CORS to allow requests from localhost:3000
-app.use(cors({
-    origin: 'https://instantlegalweddings.com', // Replace with your GoDaddy frontend URL in production
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-}));
   
   const corsOptions = {
     origin: (origin, callback) => {
@@ -35,8 +29,8 @@ app.use(cors({
     credentials: true, // Allow credentials if needed
   };
   
-//   app.use(cors(corsOptions));
-//   app.options('*', cors(corsOptions));
+  app.use(cors(corsOptions));
+  app.options('*', cors(corsOptions));
 
 
 const DBuri= process.env.DB;
