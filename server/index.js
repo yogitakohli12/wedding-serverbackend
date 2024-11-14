@@ -32,6 +32,11 @@ mongoose.connect(DBuri ,{ useNewUrlParser:true, useUnifiedTopology:true })
         .then(() => { console.log('connection successful'); })
         .catch((err)=> console.log('no connection',err));
 
+
+app.get('/',async(req,res)=>{
+    res.json("hello");
+})
+
 const formSchema = new mongoose.Schema({
     name: { type: String, required: true },
     phone: { type: String, required: true },
