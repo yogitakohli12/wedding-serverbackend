@@ -35,8 +35,8 @@ app.use(cors({
     credentials: true, // Allow credentials if needed
   };
   
-  app.use(cors(corsOptions));
-  app.options('*', cors(corsOptions));
+//   app.use(cors(corsOptions));
+//   app.options('*', cors(corsOptions));
 
 
 const DBuri= process.env.DB;
