@@ -7,7 +7,31 @@ require('dotenv').config();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use(cors({ origin: 'https://instantlegalweddings.com/' }));
+app.use(cors({ origin: 'https://instantlegalweddings.com' }));
+
+const allowedOrigins = [
+    'https://instantlegalweddings.com'
+  ];
+  
+  const corsOptions = {
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      const normalizedOrigin = origin.endsWith('/') ? origin.slice(0, -1) : origin;
+      if (allowedOrigins.includes(normalizedOrigin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
+    allowedHeaders: ['Content-Type', 'Authorization'], 
+    credentials: true, // Allow credentials if needed
+  };
+  
+  app.use(cors(corsOptions));
+  app.options('*', cors(corsOptions));
+
+
 const DBuri= process.env.DB;
 mongoose.connect(DBuri ,{ useNewUrlParser:true, useUnifiedTopology:true })
         .then(() => { console.log('connection successful'); })
