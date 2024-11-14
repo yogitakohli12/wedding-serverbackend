@@ -7,6 +7,7 @@ require('dotenv').config();
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use(cors({ origin: 'https://instantlegalweddings.com/' }));
 const DBuri= process.env.DB;
 mongoose.connect(DBuri ,{ useNewUrlParser:true, useUnifiedTopology:true })
         .then(() => { console.log('connection successful'); })
