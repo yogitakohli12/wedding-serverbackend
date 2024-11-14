@@ -7,11 +7,18 @@ require('dotenv').config();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use(cors({ origin: 'https://instantlegalweddings.com' }));
+// app.use(cors({ origin: 'https://instantlegalweddings.com' }));
 
 const allowedOrigins = [
     'https://instantlegalweddings.com'
   ];
+
+// Set up CORS to allow requests from localhost:3000
+app.use(cors({
+    origin: 'https://instantlegalweddings.com', // Replace with your GoDaddy frontend URL in production
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
   
   const corsOptions = {
     origin: (origin, callback) => {
