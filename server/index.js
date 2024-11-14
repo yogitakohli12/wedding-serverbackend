@@ -5,15 +5,10 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
-app.use(bodyParser.json());
-
-
 const allowedOrigins = [
     'https://instantlegalweddings.com',
      'http://localhost:3000'
   ];
-
-  
   const corsOptions = {
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
